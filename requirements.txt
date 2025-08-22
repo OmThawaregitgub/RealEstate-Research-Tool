@@ -9,3 +9,4 @@ protobuf
 langchain-huggingface
 langchain-ollama
 pysqlite3-binary
+sentence-transformers
