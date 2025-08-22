@@ -49,7 +49,7 @@
 
 ### **Live Web App**
 
-[Live Web Link Here]
+https://realestate-research-tool-g7hwzvsm6ecv7nko9sftxs.streamlit.app/
 
 -----
 
