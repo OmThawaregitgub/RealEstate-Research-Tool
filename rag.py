@@ -1,4 +1,5 @@
-# Fix for Streamlit Cloud and ChromaDB sqlite3 issue
+
+# This needs to be at the top of the file before any other imports that might use sqlite3.
 __import__('pysqlite3')
 import sys
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
@@ -10,11 +11,9 @@ from langchain.chains import RetrievalQAWithSourcesChain
 from langchain_community.document_loaders import UnstructuredURLLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
+# from langchain_groq import ChatGroq # Removed to avoid conflict with local LLM
 from langchain_huggingface.embeddings import HuggingFaceEmbeddings
-# Use ChatOllama for the local model
 from langchain_community.llms import ChatOllama
-# Remove the old import for Groq
-# from langchain_groq import ChatGroq
 
 load_dotenv()
 
@@ -32,7 +31,7 @@ def initialize_components():
     global llm, vector_store
 
     if llm is None:
-        # Initialize the local LLM
+        # We use a local LLM via Ollama
         llm = ChatOllama(model="llama3", temperature=0.9)
 
     if vector_store is None:
