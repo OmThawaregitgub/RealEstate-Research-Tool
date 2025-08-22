@@ -1,4 +1,7 @@
-# @Author: Dhaval Patel Copyrights Codebasics Inc. and LearnerX Pvt Ltd.
+# Fix for Streamlit Cloud and ChromaDB sqlite3 issue
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 from uuid import uuid4
 from dotenv import load_dotenv
@@ -7,11 +10,13 @@ from langchain.chains import RetrievalQAWithSourcesChain
 from langchain_community.document_loaders import UnstructuredURLLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
-from langchain_groq import ChatGroq
 from langchain_huggingface.embeddings import HuggingFaceEmbeddings
-from langchain_community.chat_models import ChatOllama
+# Use ChatOllama for the local model
+from langchain_community.llms import ChatOllama
+# Remove the old import for Groq
+# from langchain_groq import ChatGroq
 
-
+load_dotenv()
 
 # Constants
 CHUNK_SIZE = 1000
@@ -27,8 +32,8 @@ def initialize_components():
     global llm, vector_store
 
     if llm is None:
+        # Initialize the local LLM
         llm = ChatOllama(model="llama3", temperature=0.9)
-
 
     if vector_store is None:
         # Embeddings function 
