@@ -13,7 +13,8 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
 # from langchain_groq import ChatGroq # Removed to avoid conflict with local LLM
 from langchain_huggingface.embeddings import HuggingFaceEmbeddings
-from langchain_community.llms import ChatOllama
+# Correct import path for ChatOllama
+from langchain_ollama import ChatOllama
 
 load_dotenv()
 
