@@ -8,3 +8,4 @@ langchain-community
 protobuf
 langchain-huggingface
 langchain-ollama
+pysqlite3-binary
