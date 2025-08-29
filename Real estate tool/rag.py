@@ -8,9 +8,8 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
 from langchain_huggingface.embeddings import HuggingFaceEmbeddings
 # Use ChatOllama for the local model
-from langchain_groq import ChatGroq
 
-load_dotenv()
+# load_dotenv()
 
 CHUNK_SIZE = 100
 # It is the model that we use for word embedding.
@@ -26,8 +25,7 @@ def initialize_components():
     global llm, vector_store
     # Avoide reinitilization of ChatGroq constructor.
     if(llm is None):
-        llm = ChatGroq(model="llama-3.3-70b-versatile",temperature=0.9,max_tokens=1000)
-
+        llm = ChatOllama(model="llama3", temperature=0.9,max_tokens=1000)
     if(vector_store is None):
         vector_store = Chroma(
             collection_name=COLLECTION_NAME,
