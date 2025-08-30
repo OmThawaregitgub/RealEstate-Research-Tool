@@ -46,6 +46,4 @@ def get_answer():
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 
-if __name__ == '__main__':
-    # You can change the host and port if needed
-    app.run(host='0.0.0.0', port=5000, debug=True)
+
